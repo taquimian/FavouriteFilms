@@ -3,19 +3,37 @@ import { Pelicula } from '../models/pelicula.model';
 import { PeliculasService } from '../services/peliculas.service';
 import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
+import { trigger, style, animate, transition } from '@angular/animations';
+
 
 @Component({
   selector: 'app-lista-peliculas',
   templateUrl: './lista-peliculas.component.html',
-  styleUrls: ['./lista-peliculas.component.css']
+  styleUrls: ['./lista-peliculas.component.css'],
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('500ms', style({ opacity: 1 })),
+      ]),
+    ]),
+  ],
 })
 export class ListaPeliculasComponent implements OnInit {
-  peliculas: Pelicula[] = [];
+  peliculas: any[] = [];  // Local movies
+  peliculasTMDb: any[] = [];  // TMDb movies
 
   constructor(private router: Router, private peliculasService: PeliculasService) {}
 
   ngOnInit(): void {
     this.obtenerPeliculas();
+    this.obtenerPeliculasTMDb();
+
+      // Desplazamiento automático para ambas secciones
+  setInterval(() => {
+    this.scrollRight('peliculasTMDbCarousel');
+    //this.scrollRight('peliculasLocalesCarousel');
+  }, 5000);  // Desplazar cada 5 segundos
   }
 
   async obtenerPeliculas(): Promise<void> {
@@ -24,9 +42,6 @@ export class ListaPeliculasComponent implements OnInit {
   
       // Obtener películas locales desde tu base de datos
       const peliculasLocales = await firstValueFrom(this.peliculasService.obtenerPeliculas());
-      
-      // Obtener películas desde TMDb
-      const peliculasTMDb = await firstValueFrom(this.peliculasService.obtenerPeliculasTMDb());
   
       // Procesar las películas locales
       if (peliculasLocales) {
@@ -41,26 +56,35 @@ export class ListaPeliculasComponent implements OnInit {
         this.peliculas = [...procesadasLocales]; // Agregar las películas locales al array principal
       }
   
-      // Procesar las películas de TMDb y agregarlas a la lista
-      if (peliculasTMDb) {
-        this.peliculas = [...this.peliculas, ...peliculasTMDb]; // Combinar con las películas locales
-      }
-  
     } catch (error) {
       console.error('Error al obtener películas', error);
     }
   }
 
-  verDetallePelicula(id: number | undefined, tmdbId: number | undefined): void {
-    if (id !== undefined) {
-      // Navegar a los detalles de una película local
-      this.router.navigate(['/detalle-pelicula', id]);
-    } else if (tmdbId !== undefined) {
-      // Navegar a los detalles de una película de TMDb
-      this.router.navigate(['/detalle-tmdb', tmdbId]);
-    } else {
-      console.error('ID y tmdbId son undefined');
+  async obtenerPeliculasTMDb(): Promise<void> {
+    try {
+      const peliculasTMDb = await firstValueFrom(this.peliculasService.obtenerPeliculasTMDb());
+  
+      console.log('Películas de TMDb recibidas:', peliculasTMDb);  // Aquí deberías ver ya los datos mapeados desde el backend
+  
+      this.peliculasTMDb = peliculasTMDb;  // No necesitas mapearlas de nuevo si ya están correctamente formateadas
+  
+    } catch (error) {
+      console.error('Error al obtener películas de TMDb', error);
     }
+  }
+  
+  
+  
+
+  // Método para ver el detalle de las películas locales
+  verDetallePeliculaLocal(id: number): void {
+    this.router.navigate(['/detalle-pelicula', id]);
+  }
+
+  // Método para ver el detalle de las películas de TMDb
+  verDetallePeliculaTMDb(tmdbId: number): void {
+    this.router.navigate(['/detalle-tmdb', tmdbId]);
   }
   
   
@@ -78,4 +102,18 @@ export class ListaPeliculasComponent implements OnInit {
       array.slice(index * size, index * size + size)
     );
   }
+  scrollLeft(carouselId: string): void {
+    const carousel = document.getElementById(carouselId);
+    if (carousel) {
+      carousel.scrollBy({ left: -300, behavior: 'smooth' });
+    }
+  }
+  
+  scrollRight(carouselId: string): void {
+    const carousel = document.getElementById(carouselId);
+    if (carousel) {
+      carousel.scrollBy({ left: 300, behavior: 'smooth' });
+    }
+  }
+  
 }

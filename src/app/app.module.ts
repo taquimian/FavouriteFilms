@@ -23,6 +23,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

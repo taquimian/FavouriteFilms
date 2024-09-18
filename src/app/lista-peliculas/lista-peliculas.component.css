@@ -1,42 +1,68 @@
-.films-library {
-  margin: 20px;
+/* Estilos iniciales: invisibles y listos para la animación */
+.fade-in {
+  opacity: 0;
+  transition: opacity 1s ease-in;
 }
 
-.cards-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 20px;
+/* Cuando se cargan, la clase fade-in-visible los hace visibles */
+.fade-in-visible {
+  opacity: 1;
 }
 
-.pelicula-grid {
+/* Estilo general para el contenedor del carrusel */
+.carousel-container {
   position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Estilo para el carrusel en sí, que permite el scroll horizontal */
+.carousel {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 20px;
+}
+
+/* Estilo para las películas en el carrusel */
+.pelicula-grid {
+  flex: 0 0 auto;
+  width: 200px;
+  height: 300px;
   text-align: center;
-  cursor: pointer;
 }
 
 .imagen-pelicula {
   width: 100%;
-  height: 250px;
+  height: 300px;
   background-size: cover;
   background-position: center;
-  border-radius: 10px;
+  background-color: #ccc;
 }
 
-.pelicula-title {
-  font-size: 1.2rem;
-  margin: 10px 0;
-}
-
-.pelicula-info {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 10px;
-}
-
-.eliminar-icon {
-  font-size: 1.5rem;
-  color: red;
+/* Estilo para los controles */
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
   cursor: pointer;
-  padding: 5px;
+  z-index: 1;
+}
+
+.carousel-control.left {
+  left: 0;
+}
+
+.carousel-control.right {
+  right: 0;
+}
+
+/* Ocultar las barras de desplazamiento */
+.carousel::-webkit-scrollbar {
+  display: none;
 }

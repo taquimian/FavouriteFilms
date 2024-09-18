@@ -68,28 +68,26 @@ export class PeliculasService {
 
     // Método para obtener películas desde TMDb
     obtenerPeliculasTMDb(): Observable<any> {
-      // Recuperar los datos de `localStorage`
       const peliculasTMDbCacheString = localStorage.getItem('peliculasTMDbCache');
       const peliculasTMDbCache = peliculasTMDbCacheString ? JSON.parse(peliculasTMDbCacheString) : null;
-  
-      // Si los datos están en `localStorage` y no han expirado, usarlos
+    
       if (peliculasTMDbCache && Date.now() < peliculasTMDbCache.expiration) {
         console.log('Películas de TMDb obtenidas desde el caché persistente');
         return of(peliculasTMDbCache.data); // Retorna las películas desde el caché
       }
-  
+    
       // Si no hay caché o ha expirado, realiza la solicitud HTTP
       return this.http.get<any>(`${this.apiUrl}/peliculas/tmdb`).pipe(
         tap((data) => {
-          // Almacenar los datos en `localStorage` con una fecha de expiración
           const cacheItem = {
             data: data,
-            expiration: Date.now() + this.cacheDuration,
+            expiration: Date.now() + 5 * 60 * 1000,  // 5 minutos de expiración de la caché
           };
           localStorage.setItem('peliculasTMDbCache', JSON.stringify(cacheItem));  // Guardar en `localStorage`
         })
       );
     }
+    
 
     obtenerDetallePeliculaTMDb(tmdbId: number): Observable<any> {
       return this.http.get<any>(`${this.apiUrl}/peliculas/tmdb/${tmdbId}`);
