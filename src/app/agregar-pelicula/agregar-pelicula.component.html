@@ -1,0 +1,25 @@
+<div class="estilos-contenedor" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
+  <h2>Agregar Película</h2>
+  <form (ngSubmit)="agregarPelicula()" fxLayout="column" fxLayoutGap="10px">
+    <mat-form-field>
+      <input matInput type="text" [(ngModel)]="nuevaPelicula.titulo" name="titulo" required placeholder="Título">
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput [(ngModel)]="nuevaPelicula.descripcion" name="descripcion" required placeholder="Descripción"></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="number" [(ngModel)]="nuevaPelicula.anio" name="anio" required placeholder="Año">
+    </mat-form-field>
+
+    <input type="file" (change)="onFileSelected($event)" accept="image/*">
+
+    <!-- Agrega más campos según tus datos -->
+
+    <div fxLayout="row" fxLayoutAlign="space-between">
+      <button type="submit" name="agregar" mat-raised-button color="primary">Agregar</button>
+      <button mat-raised-button color="accent" (click)="volver()">Volver</button>
+    </div>
+  </form>
+</div>

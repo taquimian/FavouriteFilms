@@ -1,0 +1,18 @@
+<div class="films-library">
+  <h2 class="library-title">Films Library</h2>
+  <div class="cards-container">
+    <div class="pelicula-grid" *ngFor="let pelicula of peliculas">
+      <!--<h3 class="pelicula-title">{{ pelicula.titulo }}</h3>-->
+      
+      <!-- Imagen de la película -->
+      <div class="imagen-pelicula" [style.background-image]="'url(' + pelicula.urlImagen + ')'" 
+           (click)="verDetallePelicula(pelicula.id, pelicula.tmdbId)">
+      </div>
+      
+      <div class="pelicula-info">
+        <!-- Botón de eliminar solo para películas locales -->
+        <!--<span *ngIf="pelicula.id" (click)="eliminarPelicula(pelicula.id)" class="eliminar-icon">X</span>-->
+      </div>
+    </div>
+  </div>
+</div>

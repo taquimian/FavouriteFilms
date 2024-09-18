@@ -1,0 +1,50 @@
+.estilos-contenedor {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 90%;
+    background-color: #f9f9f9;
+    display: flex;
+  }
+  
+  .imagen-contenedor {
+    flex: 1;
+  }
+  
+  .imagen-pelicula {
+    width: 100%;
+    height: 650px;
+    background-size: cover;
+    background-position: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .detalle-contenedor {
+    flex: 2;
+  }
+  
+  .campo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  
+  .campo textarea {
+    height: 400px; /* Ajusta la altura a tu preferencia */
+  }
+  
+  input, textarea, button {
+    width: calc(100% - 20px); /* Restar el ancho del padding */
+  }
+  
+  button {
+    margin-top: 10px;
+    width: 120px;
+  }
+  
+  textarea {
+    height: calc(5 * 100%);
+  }
+  

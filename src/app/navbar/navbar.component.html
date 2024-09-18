@@ -1,0 +1,16 @@
+<nav>
+    <a routerLink="/">Películas</a>
+    <ng-container *ngIf="!isLoggedIn()">
+      <mat-menu #loginMenu="matMenu">
+        <button mat-menu-item routerLink="/login">Iniciar Sesión</button>
+        <button mat-menu-item routerLink="/registro">Registrarse</button>
+      </mat-menu>
+      <button mat-button [matMenuTriggerFor]="loginMenu">Cuenta</button>
+    </ng-container>
+  
+    <ng-container *ngIf="isLoggedIn()">
+      <a *ngIf="isAdmin()" routerLink="/agregar-pelicula">Agregar Película</a>
+      <button mat-button (click)="logout()">Cerrar Sesión</button>
+    </ng-container>
+  </nav>
+  

@@ -1,0 +1,36 @@
+<div class="estilos-contenedor" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px" *ngIf="pelicula">
+  <div class="imagen-contenedor">
+    <div class="imagen-pelicula" [style.background-image]="'url(https://image.tmdb.org/t/p/w500' + pelicula.poster_path + ')'"></div>
+  </div>
+  <div class="detalle-contenedor">
+    <h2>Detalles de la Película</h2>
+    <form fxLayout="column" fxLayoutGap="10px">
+      <div class="campo">
+        <mat-form-field appearance="fill">
+          <mat-label>Título</mat-label>
+          <input matInput [value]="pelicula.title" readonly>
+        </mat-form-field>
+      </div>
+
+      <div class="campo">
+        <mat-form-field appearance="fill">
+          <mat-label>Descripción</mat-label>
+          <textarea matInput [value]="pelicula.overview" readonly></textarea>
+        </mat-form-field>
+      </div>
+
+      <div class="campo">
+        <mat-form-field appearance="fill">
+          <mat-label>Año</mat-label>
+          <input matInput type="text" [value]="pelicula.release_date | date:'yyyy'" readonly>
+        </mat-form-field>
+      </div>
+
+      <!-- Si tienes más campos que agregar, puedes añadirlos aquí -->
+
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <button mat-raised-button color="accent" (click)="volver()">Volver</button>
+      </div>
+    </form>
+  </div>
+</div>

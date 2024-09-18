@@ -1,0 +1,44 @@
+/* Estilos para lista-peliculas.component.html */
+.peliculas-lista {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .pelicula-item {
+    border: 1px solid #ccc;
+    margin: 10px;
+    padding: 10px;
+    width: 300px;
+  }
+  
+  .pelicula-imagen {
+    width: 100%;
+    height: auto;
+  }
+  
+  /* Estilos para detalle-pelicula.component.html */
+  .detalle-pelicula {
+    display: flex;
+    align-items: center;
+  }
+  
+  .pelicula-info {
+    margin-left: 20px;
+  }
+  
+  /* Estilos para agregar-pelicula.component.html */
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+  }
+  
+  label {
+    margin-bottom: 5px;
+  }
+  
+  .estilos-contenedor {
+    display: grid;
+    place-items: center;
+    gap: 20px;
+  }
