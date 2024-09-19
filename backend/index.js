@@ -271,7 +271,7 @@ function obtenerExtension(nombreArchivo) {
 // Otros endpoints para realizar operaciones CRUD
 
 // Puerto en el que escucha el servidor
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Servidor backend iniciado en el puerto ${PORT}`);
 });
