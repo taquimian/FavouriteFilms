@@ -22,6 +22,8 @@ import { trigger, style, animate, transition } from '@angular/animations';
 export class ListaPeliculasComponent implements OnInit {
   peliculas: any[] = [];  // Local movies
   peliculasTMDb: any[] = [];  // TMDb movies
+  intervalosCarrusel: { [key: string]: any } = {}; // Para manejar los intervalos de cada carrusel
+
 
   constructor(private router: Router, private peliculasService: PeliculasService) {}
 
@@ -29,11 +31,9 @@ export class ListaPeliculasComponent implements OnInit {
     this.obtenerPeliculas();
     this.obtenerPeliculasTMDb();
 
-      // Desplazamiento automático para ambas secciones
-  setInterval(() => {
-    this.scrollRight('peliculasTMDbCarousel');
-    //this.scrollRight('peliculasLocalesCarousel');
-  }, 5000);  // Desplazar cada 5 segundos
+    // Iniciar el movimiento automático de los carruseles
+    this.iniciarCarrusel('peliculasTMDbCarousel');
+    //this.iniciarCarrusel('peliculasLocalesCarousel');
   }
 
   async obtenerPeliculas(): Promise<void> {
@@ -102,6 +102,22 @@ export class ListaPeliculasComponent implements OnInit {
       array.slice(index * size, index * size + size)
     );
   }
+
+  iniciarCarrusel(carruselId: string): void {
+    this.intervalosCarrusel[carruselId] = setInterval(() => {
+      this.scrollRight(carruselId);
+    }, 5000); // Mueve el carrusel cada 5 segundos
+  }
+
+  pausarCarrusel(carruselId: string): void {
+    clearInterval(this.intervalosCarrusel[carruselId]);
+  }
+
+  reanudarCarrusel(carruselId: string): void {
+    this.iniciarCarrusel(carruselId);
+  }
+
+
   scrollLeft(carouselId: string): void {
     const carousel = document.getElementById(carouselId);
     if (carousel) {

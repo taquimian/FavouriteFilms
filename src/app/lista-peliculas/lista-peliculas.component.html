@@ -1,14 +1,16 @@
 <div class="films-library">
   <h2 class="library-title">Últimas Películas</h2>
-  <div class="carousel-container fade-in" [ngClass]="{'fade-in-visible': peliculasTMDb.length > 0}">
+  <div class="carousel-container fade-in" 
+       [ngClass]="{'fade-in-visible': peliculasTMDb.length > 0}"
+       (mouseenter)="pausarCarrusel('peliculasTMDbCarousel')"
+       (mouseleave)="reanudarCarrusel('peliculasTMDbCarousel')">
     <button class="carousel-control left" (click)="scrollLeft('peliculasTMDbCarousel')">&lt;</button>
     <div class="carousel" id="peliculasTMDbCarousel">
       <div class="pelicula-grid" *ngFor="let pelicula of peliculasTMDb">
         <div class="imagen-pelicula" 
-             [style.background-image]="'url(' + pelicula.urlImagen + ')'" 
+             [style.background-image]="'url(' + pelicula.urlImagen + ')'"
              (click)="verDetallePeliculaTMDb(pelicula.tmdbId)">
         </div>
-        <!--<h3>{{ pelicula.titulo }}</h3>-->
       </div>
     </div>
     <button class="carousel-control right" (click)="scrollRight('peliculasTMDbCarousel')">&gt;</button>
@@ -17,15 +19,15 @@
 
 <div class="films-library">
   <h2 class="library-title">Mis Películas</h2>
-  <div class="carousel-container fade-in" [ngClass]="{'fade-in-visible': peliculas.length > 0}">
+  <div class="carousel-container fade-in" 
+       [ngClass]="{'fade-in-visible': peliculas.length > 0}">
     <button class="carousel-control left" (click)="scrollLeft('peliculasLocalesCarousel')">&lt;</button>
     <div class="carousel" id="peliculasLocalesCarousel">
       <div class="pelicula-grid" *ngFor="let pelicula of peliculas">
-        <div class="imagen-pelicula"
-             [style.background-image]="'url(' + pelicula.urlImagen + ')'" 
+        <div class="imagen-pelicula" 
+             [style.background-image]="'url(' + pelicula.urlImagen + ')'"
              (click)="verDetallePeliculaLocal(pelicula.id)">
         </div>
-        <!--<h3>{{ pelicula.titulo }}</h3>-->
       </div>
     </div>
     <button class="carousel-control right" (click)="scrollRight('peliculasLocalesCarousel')">&gt;</button>
