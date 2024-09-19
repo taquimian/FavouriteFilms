@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class DetalleTmbdPeliculaComponent implements OnInit {
   pelicula: any;
+  imagenUrl: string = ''; 
 
   constructor(private route: ActivatedRoute, private peliculasService: PeliculasService, private router: Router) {}
 
@@ -21,17 +22,24 @@ export class DetalleTmbdPeliculaComponent implements OnInit {
   obtenerDetallePelicula(tmdbId: number): void {
     this.peliculasService.obtenerDetallePeliculaTMDb(tmdbId).subscribe(
       (data) => {
-        this.pelicula = {
-          ...data,
-          release_date: new Date(data.release_date) // Convertir la fecha
-        };
+        if (data) {
+          // Asigna todos los datos de la película a la variable this.pelicula
+          this.pelicula = {
+            ...data,
+            release_date: new Date(data.release_date) // Convertir la fecha
+          };
+
+          // Establece la URL de la imagen directamente en esta variable
+          this.imagenUrl = data.poster_path
+            ? `https://image.tmdb.org/t/p/w500${data.poster_path}`
+            : '/ruta/a/imagen/por/defecto.jpg';  // Imagen por defecto si no hay poster_path
+        }
       },
       (error) => {
         console.error('Error al obtener detalles de la película de TMDb:', error);
       }
     );
   }
-
   volver(): void {
     this.router.navigate(['/']);
   }

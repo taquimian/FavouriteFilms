@@ -1,50 +1,55 @@
 .estilos-contenedor {
-    margin: 20px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 90%;
-    background-color: #f9f9f9;
-    display: flex;
-  }
+  display: flex;
+  flex-direction: row; /* Para pantallas grandes */
+  gap: 20px;
+}
   
   .imagen-contenedor {
     flex: 1;
   }
+
+  .detalle-contenedor {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centrar verticalmente */
+    align-items: center;     /* Centrar horizontalmente */
+  }
   
   .imagen-pelicula {
     width: 100%;
-    height: 650px;
+    height: auto;
     background-size: cover;
     background-position: center;
-    border: 1px solid #ccc;
-    border-radius: 5px;
   }
   
-  .detalle-contenedor {
-    flex: 2;
+  .form {
+    width: 100%;
   }
+  @media only screen and (max-width: 768px) {
+    /* Para pantallas pequeñas: móviles */
+    .estilos-contenedor {
+      flex-direction: column; /* Coloca la imagen arriba y el contenido abajo */
+    }
   
-  .campo {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-  }
+    .imagen-contenedor {
+      width: 100%;
+      margin-bottom: 100px; /* Añade espacio entre la imagen y el contenido */
+    }
   
-  .campo textarea {
-    height: 400px; /* Ajusta la altura a tu preferencia */
-  }
+    .imagen-pelicula {
+      height: 300px; /* Ajusta el tamaño del poster para móviles */
+    }
   
-  input, textarea, button {
-    width: calc(100% - 20px); /* Restar el ancho del padding */
-  }
+    .detalle-contenedor {
+      width: 100%; /* Ajusta para tomar todo el ancho */
+      justify-content: center; /* Centrar verticalmente */
+      align-items: center;     /* Centrar horizontalmente */
+      text-align: center;      /* Para asegurar que el texto se centre */
+    }
   
-  button {
-    margin-top: 10px;
-    width: 120px;
-  }
-  
-  textarea {
-    height: calc(5 * 100%);
+    .form {
+      width: 90%; /* Ajusta el formulario al 90% del ancho para mejor visualización en móviles */
+    }
   }
   

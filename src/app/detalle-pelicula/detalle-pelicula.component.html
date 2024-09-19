@@ -1,10 +1,13 @@
-<div class="estilos-contenedor" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+<div class="estilos-contenedor">
+  <!-- Poster de la película -->
   <div class="imagen-contenedor">
     <div class="imagen-pelicula" [style.background-image]="'url(' + getImagenUrl() + ')'"></div>
   </div>
+
+  <!-- Detalles de la película -->
   <div class="detalle-contenedor">
     <h2>Detalles de la Película</h2>
-    <form [formGroup]="detalleForm" fxLayout="column" fxLayoutGap="10px">
+    <form [formGroup]="detalleForm">
       <div class="campo">
         <mat-form-field appearance="fill">
           <mat-label>Título</mat-label>
@@ -26,9 +29,8 @@
         </mat-form-field>
       </div>
 
-      <!-- Agrega más campos según tus datos -->
       <app-reparto></app-reparto>
-
+      
       <div fxLayout="row" fxLayoutAlign="space-between">
         <button mat-raised-button color="accent" (click)="activarEdicion()" [disabled]="botonModificarDeshabilitado">Modificar</button>
         <button *ngIf="mostrarBotonGuardar" mat-raised-button color="accent" (click)="guardarCambios()">Guardar</button>
