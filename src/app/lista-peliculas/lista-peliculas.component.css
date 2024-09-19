@@ -39,6 +39,7 @@
   background-size: cover;
   background-position: center;
   background-color: #ccc;
+  border-radius: 10px;
 }
 
 /* Estilo para los controles */
