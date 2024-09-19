@@ -1,16 +1,29 @@
-<nav>
-    <a routerLink="/">Películas</a>
-    <ng-container *ngIf="!isLoggedIn()">
-      <mat-menu #loginMenu="matMenu">
-        <button mat-menu-item routerLink="/login">Iniciar Sesión</button>
-        <button mat-menu-item routerLink="/registro">Registrarse</button>
+<nav class="navbar">
+  <div class="navbar-container">
+    <!-- Nombre de la aplicación a la izquierda -->
+    <a class="navbar-brand" routerLink="/">FilmsLibrary</a>
+
+    <!-- Alineación del menú de la cuenta a la derecha -->
+    <div class="account-dropdown" mat-menu-item>
+      <button mat-button [matMenuTriggerFor]="menu" class="account-button">
+        <!-- Avatar y nombre de usuario si está logueado -->
+        <img *ngIf="isLoggedIn" [src]="userAvatar" alt="Avatar" class="user-avatar">
+        <span *ngIf="isLoggedIn">{{ userName }}</span>
+        <!-- Si no está logueado, muestra "Cuenta" -->
+        <span *ngIf="!isLoggedIn">Cuenta</span>
+      </button>
+      <mat-menu #menu="matMenu">
+        <!-- Menú cuando no está logueado -->
+        <ng-container *ngIf="!isLoggedIn; else loggedInMenu">
+          <button mat-menu-item routerLink="/login">Iniciar Sesión</button>
+          <button mat-menu-item routerLink="/registro">Registrarse</button>
+        </ng-container>
+        <!-- Menú cuando está logueado -->
+        <ng-template #loggedInMenu>
+          <button mat-menu-item routerLink="/mi-salon">Mi Salón</button>
+          <button mat-menu-item (click)="logout()">Cerrar sesión</button>
+        </ng-template>
       </mat-menu>
-      <button mat-button [matMenuTriggerFor]="loginMenu">Cuenta</button>
-    </ng-container>
-  
-    <ng-container *ngIf="isLoggedIn()">
-      <a *ngIf="isAdmin()" routerLink="/agregar-pelicula">Agregar Película</a>
-      <button mat-button (click)="logout()">Cerrar Sesión</button>
-    </ng-container>
-  </nav>
-  
+    </div>
+  </div>
+</nav>

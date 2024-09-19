@@ -8,14 +8,15 @@ import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';
 import { RegistroComponent } from './registro/registro.component'; // Importar el componente de registro
 import { LoginComponent } from './login/login.component'; // Importar el componente de login
-
+import { MiSalonComponent } from './mi-salon/mi-salon.component'; 
 const routes: Routes = [
   { path: '', component: ListaPeliculasComponent },
   { path: 'agregar-pelicula', component: AgregarPeliculaComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'detalle-pelicula/:id', component: DetallePeliculaComponent },
   { path: 'detalle-tmdb/:tmdbId', component: DetalleTmbdPeliculaComponent } ,
   { path: 'login', component: LoginComponent },
-  { path: 'registro', component: RegistroComponent }  // Añadir la ruta de registro
+  { path: 'registro', component: RegistroComponent },
+  { path: 'mi-salon', component: MiSalonComponent }
 ];
 
 

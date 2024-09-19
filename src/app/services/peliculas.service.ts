@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Pelicula } from '../models/pelicula.model';
 import { environment } from 'src/environments/environment'; 
@@ -30,8 +30,13 @@ export class PeliculasService {
     }
 
     modificarPelicula(id: number, pelicula: FormData): Observable<any> {
-      return this.http.post<any>(`${this.apiUrl}/modificar/${id}`, pelicula);
+      const token = localStorage.getItem('authToken');
+      const headers = { Authorization: `Bearer ${token}` };
+      console.log(localStorage.getItem('authToken'));
+
+      return this.http.post<any>(`${this.apiUrl}/peliculas/modificar/${id}`, pelicula, { headers });
     }
+    
     
     // Método para obtener todas las películas
     obtenerPeliculas(): Observable<Pelicula[]> {

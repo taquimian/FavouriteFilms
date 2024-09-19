@@ -1,25 +1,84 @@
+/* Estilos para centrar el formulario y los campos verticalmente */
+
 .form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    text-align: center;
-  }
-  
-  mat-form-field {
-    width: 100%;
-    max-width: 400px;
-    margin-bottom: 20px;
-  }
-  
-  button {
-    width: 100%;
-    max-width: 400px;
-    margin-top: 20px; /* Espacio entre los campos y el botón */
-  }
-  
-  h1 {
-    margin-bottom: 30px;
-  }
-  
+  max-width: 400px;  /* Ajusta este valor según el diseño que desees */
+  margin: 0 auto;  /* Centra horizontalmente el formulario */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;  /* Asegura que los elementos dentro se alineen en columna */
+  gap: 20px;  /* Añade un espacio entre los campos */
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-form-field {
+  width: 100%;  /* Asegura que cada campo ocupe el 100% del ancho disponible */
+}
+
+button {
+  margin-top: 20px;
+}
+
+h1 {
+  text-align: center;  /* Centra el título */
+  margin-bottom: 20px;
+}
+
+.title-with-refresh {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.refresh-button {
+  margin-left: auto;
+}
+
+.avatar-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatars-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.avatar-item {
+  margin: 10px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 50%;
+}
+
+.avatar-item img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.avatar-item.selected {
+  border-color: #007bff; /* Cambia el color de borde cuando esté seleccionado */
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
+
+.success-message {
+  color: green;
+  margin-top: 10px;
+}
+

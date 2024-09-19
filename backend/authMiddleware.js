@@ -1,19 +1,20 @@
 const jwt = require('jsonwebtoken');
 
-const verifyToken = (req, res, next) => {
+function verifyToken(req, res, next) {
   const token = req.headers['authorization'];
+
   if (!token) {
-    return res.status(403).json({ message: 'No token provided' });
+    return res.status(403).send({ message: 'No token provided!' });
   }
 
-  jwt.verify(token, 'secreto', (err, decoded) => {
+  jwt.verify(token.split(' ')[1], 'secreto', (err, decoded) => {
     if (err) {
-      return res.status(500).json({ message: 'Failed to authenticate token' });
+      return res.status(401).send({ message: 'Unauthorized!' });
     }
-    req.userId = decoded.id;
-    req.userRole = decoded.role;
-    next();
+    req.userId = decoded.id;  // Decodifica el token y extrae el userId
+    req.userRole = decoded.role; // Extrae el rol del token
+    next();  // Llama al siguiente middleware o ruta
   });
-};
+}
 
 module.exports = verifyToken;

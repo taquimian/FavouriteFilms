@@ -13,7 +13,7 @@ export class RepartoComponent implements OnInit {
   constructor(private actoresService: ActoresService) { }
 
   ngOnInit(): void {
-    this.obtenerActores();
+    //this.obtenerActores();
   }
 
   obtenerActores(): void {

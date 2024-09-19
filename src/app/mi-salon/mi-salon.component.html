@@ -1,0 +1,31 @@
+<div class="mi-salon-container fade-in">
+    <h2>Bienvenido a tu Salón, {{ userName }}</h2>
+  
+    <div class="avatar-section">
+      <img [src]="userAvatar" alt="Avatar de {{ userName }}" class="avatar">
+      <h3>{{ userName }}</h3>
+    </div>
+  
+    <div class="user-details">
+      <h4>Tus datos personales:</h4>
+      <mat-list>
+        <mat-list-item>
+          <span class="mat-list-icon">📧</span>
+          <span class="mat-list-text">Correo: {{ userEmail }}</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span class="mat-list-icon">🗓️</span>
+          <span class="mat-list-text">Fecha de nacimiento: {{ userFechaNacimiento }}</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span class="mat-list-icon">🌍</span>
+          <span class="mat-list-text">País de residencia: {{ userPaisResidencia }}</span>
+        </mat-list-item>
+        <mat-list-item>
+            <span class="mat-list-icon">🎥</span>
+            <span class="mat-list-text">Preferencias de películas: {{ userPreferencias.join(', ') }}</span>
+          </mat-list-item>               
+      </mat-list>
+    </div>
+  </div>
+  

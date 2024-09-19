@@ -29,12 +29,13 @@ export class LoginComponent {
       this.authService.login(username, password).subscribe(
         (response) => {
           this.authService.saveToken(response.token);
-          this.router.navigate(['/']);
+          this.router.navigate(['/']);  // Redirige tras login exitoso
         },
         (error) => {
-          this.errorMessage = 'Usuario o contraseña incorrectos';
+          this.errorMessage = 'Usuario o contraseña incorrectos';  // Captura errores
         }
       );
     }
   }
+  
 }

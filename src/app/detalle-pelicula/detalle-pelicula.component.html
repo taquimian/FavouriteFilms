@@ -29,13 +29,11 @@
         </mat-form-field>
       </div>
 
-      <app-reparto></app-reparto>
-      
       <div fxLayout="row" fxLayoutAlign="space-between">
         <button mat-raised-button color="accent" (click)="activarEdicion()" [disabled]="botonModificarDeshabilitado">Modificar</button>
         <button *ngIf="mostrarBotonGuardar" mat-raised-button color="accent" (click)="guardarCambios()">Guardar</button>
         <button (click)="volver()" mat-raised-button color="accent">Volver</button>
-      </div>      
+      </div>
     </form>
   </div>
 </div>

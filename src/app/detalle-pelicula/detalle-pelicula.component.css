@@ -1,55 +1,89 @@
 .estilos-contenedor {
   display: flex;
-  flex-direction: row; /* Para pantallas grandes */
-  gap: 20px;
+  flex-direction: row;
+  gap: 40px; /* Mayor espacio entre la imagen y los campos */
+  justify-content: center; /* Centrar horizontalmente el contenido */
+  align-items: center; /* Centrar verticalmente */
+  margin: 40px auto; /* Márgenes automáticos para centrar */
+  max-width: 1200px; /* Ajuste para pantallas más grandes */
 }
 
 .imagen-contenedor {
-  flex: 1;
-}
-
-.detalle-contenedor {
-  flex: 2;
+  width: 400px; /* Ancho de la imagen del poster */
+  height: 750px; /* Altura fija */
   display: flex;
-  flex-direction: column;
-  justify-content: center; /* Centrar verticalmente */
-  align-items: center;     /* Centrar horizontalmente */
+  justify-content: center;
+  align-items: center;
 }
 
 .imagen-pelicula {
   width: 100%;
-  height: auto;
+  height: 100%;
   background-size: cover;
   background-position: center;
+  border-radius: 20px; /* Bordes redondeados */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Sombra para un mejor aspecto */
 }
 
-.form {
-  width: 100%;
+.detalle-contenedor {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Alinear los campos al principio */
+  align-items: flex-start; /* Alinear los campos a la izquierda */
+  max-width: 700px; /* Aumentado el ancho máximo del formulario */
 }
+
+.campo {
+  width: 100%; /* Los campos ocupan todo el ancho disponible */
+  margin-bottom: 15px; /* Espacio entre los campos */
+}
+
+button {
+  margin-top: 20px;
+}
+
+:host ::ng-deep mat-form-field {
+  width: 100%; /* Asegura que los campos mat ocupen el 100% del ancho */
+}
+
+/* Para darle más altura al campo de descripción */
+:host ::ng-deep textarea {
+  min-height: 400px; /* Ajuste de la altura mínima del campo de descripción */
+  min-width: 500px;
+}
+
+:host ::ng-deep .mat-mdc-text-field-wrapper {
+  width: 500px; /* O el tamaño que necesites */
+}
+
+:host ::ng-deep .mdc-text-field {
+  width: 500px; /* O el tamaño deseado */
+}
+
+:host ::ng-deep .mat-mdc-form-field {
+  width: 500px !important; /* Forzar el 100% del ancho disponible */
+}
+
+:host ::ng-deep .mat-mdc-form-field-wrapper {
+  width: 500px !important;
+}
+
 
 @media only screen and (max-width: 768px) {
-  /* Para pantallas pequeñas: móviles */
   .estilos-contenedor {
-    flex-direction: column; /* Coloca la imagen arriba y el contenido abajo */
+    flex-direction: column; /* Colocar la imagen arriba y los campos abajo en móviles */
+    align-items: center;
+    text-align: center; /* Centrar el texto en pantallas pequeñas */
   }
 
   .imagen-contenedor {
-    width: 100%;
-    margin-bottom: 20px; /* Añade espacio entre la imagen y el contenido */
-  }
-
-  .imagen-pelicula {
-    height: 300px; /* Ajusta el tamaño del poster para móviles */
+    width: 80%; /* La imagen toma el ancho completo en móviles */
+    height: auto;
   }
 
   .detalle-contenedor {
-    width: 100%; /* Ajusta para tomar todo el ancho */
-    justify-content: center; /* Centrar verticalmente */
-    align-items: center;     /* Centrar horizontalmente */
-    text-align: center;      /* Para asegurar que el texto se centre */
-  }
-
-  .form {
-    width: 90%; /* Ajusta el formulario al 90% del ancho para mejor visualización en móviles */
+    width: 90%; /* El formulario ocupa el 90% del ancho en móviles */
+    align-items: center; /* Centrar el contenido en móviles */
   }
 }

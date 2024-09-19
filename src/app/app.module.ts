@@ -11,6 +11,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ListaPeliculasComponent } from './lista-peliculas/lista-peliculas.component';
 import { DetallePeliculaComponent } from './detalle-pelicula/detalle-pelicula.component';
@@ -22,6 +24,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
+import { MiSalonComponent } from './mi-salon/mi-salon.component';
 
 
 @NgModule({
@@ -34,7 +37,8 @@ import { RegistroComponent } from './registro/registro.component';
     RepartoComponent,
     NavbarComponent,
     LoginComponent,
-    RegistroComponent
+    RegistroComponent,
+    MiSalonComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +52,9 @@ import { RegistroComponent } from './registro/registro.component';
     MatButtonModule,
     MatSelectModule, 
     MatOptionModule,
+    MatIconModule,
     MatMenuModule,
+    MatListModule, 
     FlexLayoutModule,
     BrowserAnimationsModule
   ],
